@@ -10,6 +10,7 @@ using System.Runtime.Remoting.Channels.Http;
 
 using RemotingClass;
 using System.Runtime.Remoting.Channels.Ipc;
+using System.Collections;
 
 namespace RemotingServer
 {
@@ -17,6 +18,11 @@ namespace RemotingServer
     {
         static void Main(string[] args)
         {
+            Hashtable channelProperties = new Hashtable();
+            channelProperties["secure"] = true;
+            channelProperties["name"] = "ClassConfiguratorRemoting" + GetUniqueClientID();
+            channelProperties["portName"] = "ClassConfiguratorRemoting" + GetUniqueClientID();
+
             //HttpChannel channel = new HttpChannel(8080);
             //TcpChannel channel = new TcpChannel(8080);
             IpcChannel channel = new IpcChannel("localhost:8080");
