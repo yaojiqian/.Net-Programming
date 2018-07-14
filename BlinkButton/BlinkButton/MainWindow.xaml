@@ -39,7 +39,7 @@
                                 <Storyboard BeginTime="00:00:01" 
                                 RepeatBehavior="Forever" 
                                 Storyboard.TargetProperty="Effect.BlurRadius">
-                                    <DoubleAnimation From="0" To="20" Duration="0:0:3"/>
+                                    <DoubleAnimation From="0" To="20" Duration="0:0:1" AutoReverse="True"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger.Actions>
