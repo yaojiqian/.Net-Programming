@@ -21,7 +21,7 @@ namespace AttributeTest
         [SimpleDescription("The new method.")]
         public static void New() { Console.WriteLine("hi, new"); }
 
-        [SimpleDescription("the AMethod1")]
+        [SimpleDescription(Descripton="the AMethod1", Type = PropertyType.Type2)]
         public void AMethod1()
         {
             Console.WriteLine("a method1");
@@ -58,8 +58,9 @@ namespace AttributeTest
                     // Check for the AnimalType attribute.
                     if (attr.GetType() == typeof(SimpleDescriptionAttribute))
                         Console.WriteLine( String.Format(
-                            "Method {0} has a {1} attribute.",
-                            mInfo.Name, ((SimpleDescriptionAttribute)attr).Descripton));
+                            "Method {0} has a {1} attribute. type = {2}",
+                            mInfo.Name, ((SimpleDescriptionAttribute)attr).Descripton,
+                            ((SimpleDescriptionAttribute)attr).Type));
                 }
 
             }
