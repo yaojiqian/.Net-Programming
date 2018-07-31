@@ -7,13 +7,71 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Button Grid.Row="0" x:Name="btnSendRequest" Content="Get Campaigns" Click="btnSendRequest_Click"/>
-        <Button Grid.Row="1" x:Name="btnCampaignID" Content="Get Campaign by ID" Click="btnCampaignID_Click"/>
-        <Button Grid.Row="2" x:Name="btnPostCampaign" Content="Adding a new Campaign" Click="btnPostCampain_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <TextBox x:Name="txtBaseUrl" Text="http://marketing-campaigns.getsandbox.com/marketing/v1"/>
+                <StackPanel Orientation="Horizontal" x:Name="stack">
+                    <StackPanel.Resources>
+
+                        <Storyboard x:Key="slide">
+                            <DoubleAnimation From="{Binding Width, ElementName=canvas}" To="0" Duration="00:00:10"
+                      Storyboard.TargetProperty="X"
+                      Storyboard.TargetName="transferCurreny"
+                      RepeatBehavior="Forever"/>
+                        </Storyboard>
+                    </StackPanel.Resources>
+                    <StackPanel.RenderTransform>
+                        <TranslateTransform x:Name="transferCurreny" X="0"/>
+                    </StackPanel.RenderTransform>
+                    <StackPanel.Triggers>
+                        <EventTrigger RoutedEvent="StackPanel.Loaded">
+                            <BeginStoryboard Storyboard="{StaticResource slide}" />
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="StackPanel.SizeChanged">
+                            <BeginStoryboard Storyboard="{StaticResource slide}" />
+                        </EventTrigger>
+                    </StackPanel.Triggers>
+                    <Canvas x:Name="canvas" Width="{Binding ActualWidth, ElementName=stack}">
+                        <TextBlock Text="Scroll text." FontSize="25"  x:Name="txtKron" Canvas.Left="0"/>
+                        <TextBlock Text="{Binding Text, ElementName=txtKron}" FontSize="25" Canvas.Left="{Binding Width, ElementName=canvas}"/>
+                    </Canvas>
+                </StackPanel>
+            </StackPanel>
+            <Button Grid.Row="1" x:Name="btnSendRequest" Content="Get Campaigns" Click="btnSendRequest_Click" Margin="5">
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Loaded">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard BeginTime="00:00:01" 
+                                RepeatBehavior="Forever" 
+                                Storyboard.TargetProperty="Effect.BlurRadius">
+                                    <DoubleAnimation From="0" To="20" Duration="0:0:1" AutoReverse="True"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Button.Triggers>
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="20" Color="Orange" Direction="120" RenderingBias="Performance" ShadowDepth="0">
+
+                    </DropShadowEffect>
+                </Button.Effect>
+            </Button>
+            <Button Grid.Row="2" x:Name="btnCampaignID" Content="Get Campaign by ID" Click="btnCampaignID_Click" Margin="5"/>
+            <Button Grid.Row="3" x:Name="btnPostCampaign" Content="Adding a new Campaign" Click="btnPostCampain_Click" Margin="5" />
+        </Grid>
+        <TextBlock Grid.Column="1" Name="txtResponse">
+            
+        </TextBlock>
     </Grid>
 </Window>

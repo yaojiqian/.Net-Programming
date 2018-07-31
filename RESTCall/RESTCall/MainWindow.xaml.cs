@@ -53,9 +53,10 @@ namespace RESTCall
         {
             TimeSpan ds = DateTime.Now.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc));
 
-            RestClient client = new RestClient("http://marketing-campaigns.getsandbox.com");
+            //RestClient client = new RestClient("http://marketing-campaigns.getsandbox.com/marketing/v1");
+            RestClient client = new RestClient(txtBaseUrl.Text);
 
-            RestRequest request = new RestRequest("/marketing/v1/campaigns", Method.GET);
+            RestRequest request = new RestRequest("/campaigns", Method.GET);
             request.AddHeader("Authorization", "Bear token1234");
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Financial-Id", "EBI");
@@ -65,19 +66,21 @@ namespace RESTCall
             request.AddHeader("Client-Ip", "127.0.0.1");
             request.AddHeader("Channel-Id", "BNK");
 
-            request.AddUrlSegment("cif", "1234567890");
+            request.AddParameter("cif", "1234567890");
             request.AddParameter("productName", "PERSONAL LOAN");
 
             IRestResponse response = client.Execute(request);
             var content = response.Content;
+            txtResponse.Text = content;
         }
 
         private void btnCampaignID_Click(object sender, RoutedEventArgs e)
         {
             TimeSpan ds = DateTime.Now.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc));
-            RestClient client = new RestClient("http://marketing-campaigns.getsandbox.com");
+            //RestClient client = new RestClient("http://marketing-campaigns.getsandbox.com");
+            RestClient client = new RestClient(txtBaseUrl.Text);
 
-            RestRequest request = new RestRequest("/marketing/v1/campaigns/{id}", Method.GET);
+            RestRequest request = new RestRequest("/campaigns/{id}", Method.GET);
             request.AddHeader("Authorization", "Bear token1234");
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Financial-Id", "EBI");
@@ -99,7 +102,10 @@ namespace RESTCall
         private void btnPostCampain_Click(object sender, RoutedEventArgs e)
         {
             TimeSpan ds = DateTime.Now.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc));
-            RestClient client = new RestClient("http://marketing-campaigns.getsandbox.com");
+            //RestClient client = new RestClient("http://marketing-campaigns.getsandbox.com");
+
+            RestClient client = new RestClient(txtBaseUrl.Text);
+
             Campaign toUpdate = new Campaign
             {
                 cif = "24515711",
@@ -119,7 +125,7 @@ namespace RESTCall
                 }
             };
 
-            RestRequest request = new RestRequest("/marketing/v1/campaigns", Method.POST);
+            RestRequest request = new RestRequest("/campaigns", Method.POST);
             request.AddHeader("Authorization", "Bear token1234");
             request.AddHeader("Content-Type", "application/json");
             request.AddHeader("Financial-Id", "EBI");
