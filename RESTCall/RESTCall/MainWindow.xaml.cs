@@ -97,6 +97,7 @@ namespace RESTCall
             //var content = response.Content;
 
             IRestResponse<Campaign> response2 = client.Execute<Campaign>(request);
+            txtResponse.Text = response2.Content;
         }
 
         private void btnPostCampain_Click(object sender, RoutedEventArgs e)
@@ -139,7 +140,13 @@ namespace RESTCall
 
             IRestResponse response = client.Execute(request);
             var content = response.Content;
+            txtResponse.Text = content;
             //response.StatusCode
+        }
+
+        private void btnClearResponse_Click(object sender, RoutedEventArgs e)
+        {
+            txtResponse.Text = "";
         }
     }
 }

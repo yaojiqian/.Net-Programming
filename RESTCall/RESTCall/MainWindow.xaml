@@ -17,9 +17,11 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
-                <TextBox x:Name="txtBaseUrl" Text="http://marketing-campaigns.getsandbox.com/marketing/v1"/>
+                <TextBox x:Name="txtBaseUrl" Text="http://marketing-campaigns.getsandbox.com/marketing/v1" Height="78" TextWrapping="Wrap" />
+                <!--
                 <StackPanel Orientation="Horizontal" x:Name="stack">
                     <StackPanel.Resources>
 
@@ -41,11 +43,13 @@
                             <BeginStoryboard Storyboard="{StaticResource slide}" />
                         </EventTrigger>
                     </StackPanel.Triggers>
+                    
                     <Canvas x:Name="canvas" Width="{Binding ActualWidth, ElementName=stack}">
                         <TextBlock Text="Scroll text." FontSize="25"  x:Name="txtKron" Canvas.Left="0"/>
                         <TextBlock Text="{Binding Text, ElementName=txtKron}" FontSize="25" Canvas.Left="{Binding Width, ElementName=canvas}"/>
                     </Canvas>
-                </StackPanel>
+                    
+                </StackPanel>-->
             </StackPanel>
             <Button Grid.Row="1" x:Name="btnSendRequest" Content="Get Campaigns" Click="btnSendRequest_Click" Margin="5">
                 <Button.Triggers>
@@ -69,8 +73,9 @@
             </Button>
             <Button Grid.Row="2" x:Name="btnCampaignID" Content="Get Campaign by ID" Click="btnCampaignID_Click" Margin="5"/>
             <Button Grid.Row="3" x:Name="btnPostCampaign" Content="Adding a new Campaign" Click="btnPostCampain_Click" Margin="5" />
+            <Button Grid.Row="4" x:Name="btnClearResponse" Content="Clear Response" Click="btnClearResponse_Click" Margin="5" />
         </Grid>
-        <TextBlock Grid.Column="1" Name="txtResponse">
+        <TextBlock Grid.Column="1" Name="txtResponse" >
             
         </TextBlock>
     </Grid>
