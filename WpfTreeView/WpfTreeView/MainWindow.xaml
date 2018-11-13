@@ -7,8 +7,8 @@
         Loaded="Window_Loaded"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <StackPanel Orientation="Horizontal">
-        
+    <Grid >
+
         <TreeView x:Name="FolderView" >
             <TreeView.Resources>
                 <Style TargetType="{x:Type TreeViewItem}">
@@ -29,5 +29,5 @@
                 </Style>
             </TreeView.Resources>
         </TreeView>
-    </StackPanel>
+    </Grid>
 </Window>
